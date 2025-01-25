@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="CTF Hidden Challenge">
+  <title>CTF Challenge: Find the Hidden Key</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #282c34;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      margin: 20px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    input[type="text"] {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .hidden-message {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Welcome to the Secret Network Challenge</h1>
+  <p>A hidden key will unlock the next step. Can you find it?</p>
+</header>
+
+<div class="container">
+  <p>
+    Sometimes the answer is right in front of you, but it’s hidden in a way only the observant can uncover. 
+    Decode, deduce, and discover.
+  </p>
+
+  <form id="answerForm">
+    <input type="text" id="userInput" name="userInput" placeholder="Enter the key" required>
+    <button type="submit">Unlock</button>
+  </form>
+
+  <div id="successMessage" class="hidden-message">
+    <h2>Congratulations! You’ve unlocked the mystery.</h2>
+    <a href="/challenge2" class="button">Proceed to the Next Challenge</a>
+  </div>
+
+  <script>
+     
+    const hiddenAnswer = "MTAuMC4wLjE=";  
+
+    // Decode the correct answer dynamically at runtime
+    function getCorrectAnswer() {
+      return atob(hiddenAnswer);
+    }
+
+    document.getElementById("answerForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const userAnswer = document.getElementById("userInput").value.trim();
+      const correctAnswer = getCorrectAnswer(); // Decoded only at runtime
+
+      if (userAnswer === correctAnswer) {
+        document.getElementById("successMessage").style.display = "block";
+      } else {
+        alert("Incorrect! Please try again.");
+      }
+    });
+
+    // Console hints for participants
+    console.log("The key is encoded but can be decoded by those who know how.");
+    console.log("Hint: Base64 is a useful tool for explorers.");
+  </script>
+</div>
+
+</body>
+</html>
